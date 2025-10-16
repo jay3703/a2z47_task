@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Data - Task Management</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #f0f4f8, #d9e4ec);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+    .main-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      width: 95%;
+      max-width: 1200px;
+    }
+    .card-header {
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      color: #fff;
+      padding: 1.8rem;
+      text-align: center;
+    }
+    .card-header h3 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    .table thead th {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #495057;
+      background: #f8f9fa;
+      text-align: center;
+      border-bottom: 2px solid #dee2e6;
+    }
+    .table tbody tr {
+      transition: all 0.3s ease;
+    }
+    .table tbody tr:hover {
+      background: #f1f8ff;
+      transform: scale(1.005);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+    .avatar-sm {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #007bff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+    .status-badge {
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.45rem 1.2rem;
+      transition: transform 0.2s;
+    }
+    .status-badge:hover {
+      transform: scale(1.1);
+    }
+    .modal-content {
+      border-radius: 18px;
+    }
+    .modal-header {
+      background: linear-gradient(90deg, #007bff, #00c6ff);
+      color: #fff;
+      border-bottom: none;
+    }
+    .btn-close {
+      filter: invert(1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-card">
+    <!-- Header -->
+    <div class="card-header">
+      <h3><i class="bi bi-people-fill me-2"></i>All Data</h3>
+    </div>
+
+    <!-- Table -->
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>User Name</th>
+              <th>Mobile</th>
+              <th>Pending</th>
+              <th>Processing</th>
+              <th>Completed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i=0; i<users.length; i++) { %>
+            <tr>
+              <td class="text-center">
+                <span class="badge bg-dark status-badge"><%= users[i].user_id %></span>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="avatar-sm me-3">
+                    <i class="bi bi-person"></i>
+                  </div>
+                  <strong><%= users[i].user_name %></strong>
+                </div>
+              </td>
+              <td>
+                <i class="bi bi-telephone me-1 text-muted"></i>
+                <%= users[i].user_mobile %>
+              </td>
+              <td class="text-center">
+                <a onclick="open_page_modal('/pending_tasks/<%- users[i].user_id %>')">
+                  <span class="badge bg-warning text-dark status-badge">
+                    <%= users[i].pending_task %>
+                  </span>
+                </a>
+              </td>
+              <td class="text-center">
+                <a onclick="open_page_modal('/processing_task/<%- users[i].user_id %>')">
+                  <span class="badge bg-info text-dark status-badge">
+                    <%= users[i].processing_task %>
+                  </span>
+                </a>
+              </td>
+              <td class="text-center">
+                <a onclick="open_page_modal('/completed_task/<%- users[i].user_id %>')">
+                  <span class="badge bg-success status-badge">
+                    <%= users[i].completed_task %>
+                  </span>
+                </a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="pageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Task Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <iframe id="modalIframe" src="" style="width: 100%; height: 450px; border: none;"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function open_page_modal(url){
+      var modal = new bootstrap.Modal(document.getElementById('pageModal'));
+      document.getElementById('modalIframe').src = url;
+      modal.show();
+    }
+  </script>
+</body>
+</html>

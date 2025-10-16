@@ -2,110 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Registration</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
     body {
-      font-family: 'Poppins', sans-serif;
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      background: linear-gradient(135deg, #d9a7c7, #fffcdc);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff0f5; /* हलका light pink background */
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
+
     .container {
-      background:#fff;
-      border-radius:20px;
-      box-shadow:0 12px 30px rgba(0,0,0,0.2);
-      width:420px;
-      padding:40px 30px;
-      text-align:center;
+      background: #ffe6f2; /* box हलका pink */
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 40px 30px;
+      width: 400px;
+      text-align: center;
     }
-    .title {
-      font-size:28px;
-      font-weight:700;
-      color:#333;
-      margin-bottom:25px;
+
+    h2 {
+      margin-bottom: 20px;
+      color: #cc6699;
+      font-size: 26px;
+      font-weight: bold;
     }
-    .input-box {
-      margin-bottom:18px;
-      text-align:left;
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+      position: relative;
     }
-    .input-box label {
-      display:block;
-      font-weight:600;
-      margin-bottom:6px;
-      color:#444;
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: #444;
+      font-weight: 500;
     }
-    .input-box input {
-      width:100%;
-      padding:12px;
-      border:1px solid #ccc;
-      border-radius:10px;
-      font-size:15px;
-      outline:none;
-      transition:border 0.3s;
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      background: #fff;
+      transition: 0.3s;
     }
-    .input-box input:focus {
-      border:1px solid #9c27b0;
+
+    input:focus {
+      border-color: #ff99cc;
+      box-shadow: 0 0 5px rgba(255,153,204,0.3);
+      outline: none;
     }
+
+    /* eye icon */
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 36px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #888;
+    }
+
     .btn {
-      width:100%;
-      padding:14px;
-      margin-top:10px;
-      border:none;
-      border-radius:10px;
-      font-size:18px;
-      font-weight:600;
-      cursor:pointer;
-      background: linear-gradient(135deg, #8e2de2, #4a00e0);
-      color:#fff;
-      transition:0.3s;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #ffb3d9, #ff99cc);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
     }
+
     .btn:hover {
-      transform:scale(1.05);
-      background: linear-gradient(135deg, #7320b5, #36008c);
+      opacity: 0.9;
+      transform: translateY(-1px);
     }
+
     .back-link {
-      display:block;
-      margin-top:15px;
-      color:#666;
-      font-size:14px;
-      text-decoration:none;
+      margin-top: 15px;
+      display: inline-block;
+      color: #cc6699;
+      text-decoration: none;
+      font-size: 14px;
     }
+
     .back-link:hover {
-      color:#000;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="title">User Registration</div>
+    <h2>Create Account</h2>
     <form action="/save_user" method="post">
-      <div class="input-box">
-        <label for="first_name">First Name</label>
-        <input type="text" id="first_name" name="first_name" placeholder="Enter first name" required>
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="first_name" placeholder="Enter your first name" required>
       </div>
-      <div class="input-box">
-        <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" name="last_name" placeholder="Enter last name" required>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" name="last_name" placeholder="Enter your last name" required>
       </div>
-      <div class="input-box">
-        <label for="user_name">User Name</label>
-        <input type="text" id="user_name" name="user_name" placeholder="Choose a username" required>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
       </div>
-      <div class="input-box">
-        <label for="user_mobile">Mobile Number</label>
-        <input type="tel" id="user_mobile" name="user_mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" required>
+
+      <div class="form-group">
+        <label>Mobile</label>
+        <input type="number" name="user_mobile" placeholder="Enter your mobile number" required>
       </div>
-      <div class="input-box">
-        <label for="user_password">Password</label>
-        <input type="password" id="user_password" name="user_password" placeholder="Enter password" required>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="password" name="user_password" placeholder="Enter your password" required>
+        <span class="toggle-password" onclick="togglePassword()">👁</span>
       </div>
-      <button class="btn" type="submit">Register</button>
+
+      <button type="submit" class="btn">Register</button>
     </form>
+
     <a href="/" class="back-link">← Back to Home</a>
   </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const toggleBtn = document.querySelector('.toggle-password');
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleBtn.textContent = "🙈";
+      } else {
+        passwordInput.type = "password";
+        toggleBtn.textContent = "👁";
+      }
+    }
+  </script>
 </body>
 </html>
