@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #d9a7c7, #fffcdc);
+    }
+    .container {
+      background:#fff;
+      border-radius:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+      width:420px;
+      padding:40px 30px;
+      text-align:center;
+    }
+    .title {
+      font-size:28px;
+      font-weight:700;
+      color:#333;
+      margin-bottom:25px;
+    }
+    .input-box {
+      margin-bottom:18px;
+      text-align:left;
+    }
+    .input-box label {
+      display:block;
+      font-weight:600;
+      margin-bottom:6px;
+      color:#444;
+    }
+    .input-box input {
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      font-size:15px;
+      outline:none;
+      transition:border 0.3s;
+    }
+    .input-box input:focus {
+      border:1px solid #9c27b0;
+    }
+    .btn {
+      width:100%;
+      padding:14px;
+      margin-top:10px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      font-weight:600;
+      cursor:pointer;
+      background: linear-gradient(135deg, #8e2de2, #4a00e0);
+      color:#fff;
+      transition:0.3s;
+    }
+    .btn:hover {
+      transform:scale(1.05);
+      background: linear-gradient(135deg, #7320b5, #36008c);
+    }
+    .back-link {
+      display:block;
+      margin-top:15px;
+      color:#666;
+      font-size:14px;
+      text-decoration:none;
+    }
+    .back-link:hover {
+      color:#000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">User Registration</div>
+    <form action="/save_user" method="post">
+      <div class="input-box">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" placeholder="Enter first name" required>
+      </div>
+      <div class="input-box">
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" placeholder="Enter last name" required>
+      </div>
+      <div class="input-box">
+        <label for="user_name">User Name</label>
+        <input type="text" id="user_name" name="user_name" placeholder="Choose a username" required>
+      </div>
+      <div class="input-box">
+        <label for="user_mobile">Mobile Number</label>
+        <input type="tel" id="user_mobile" name="user_mobile" placeholder="Enter mobile number" pattern="[0-9]{10}" required>
+      </div>
+      <div class="input-box">
+        <label for="user_password">Password</label>
+        <input type="password" id="user_password" name="user_password" placeholder="Enter password" required>
+      </div>
+      <button class="btn" type="submit">Register</button>
+    </form>
+    <a href="/" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>

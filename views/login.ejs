@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: 'Poppins', sans-serif;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    }
+    .container {
+      background:#fff;
+      border-radius:20px;
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+      width:400px;
+      padding:40px 30px;
+      text-align:center;
+    }
+    .title {
+      font-size:32px;
+      font-weight:700;
+      color:#333;
+      margin-bottom:30px;
+    }
+    .input-box {
+      margin-bottom:20px;
+      text-align:left;
+    }
+    .input-box label {
+      display:block;
+      font-weight:600;
+      margin-bottom:6px;
+      color:#444;
+    }
+    .input-box input {
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      font-size:15px;
+      outline:none;
+      transition:border 0.3s;
+    }
+    .input-box input:focus {
+      border:1px solid #4facfe;
+    }
+    .btn {
+      width:100%;
+      padding:14px;
+      margin-top:10px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+      font-weight:600;
+      cursor:pointer;
+      background: linear-gradient(135deg, #42e695, #3bb2b8);
+      color:#fff;
+      transition:0.3s;
+    }
+    .btn:hover {
+      transform:scale(1.05);
+      background: linear-gradient(135deg, #34c97a, #329a9d);
+    }
+    .back-link {
+      display:block;
+      margin-top:20px;
+      color:#666;
+      font-size:14px;
+      text-decoration:none;
+      transition:0.3s;
+    }
+    .back-link:hover {
+      color:#000;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">User Login</div>
+    <form action="/login_process" method="post">
+      <div class="input-box">
+        <label for="user_mobile">Mobile Number</label>
+        <input type="tel" id="user_mobile" name="user_mobile" placeholder="Enter mobile number" required>
+      </div>
+      <div class="input-box">
+        <label for="user_password">Password</label>
+        <input type="password" id="user_password" name="user_password" placeholder="Enter password" required>
+      </div>
+      <button class="btn" type="submit">Login</button>
+    </form>
+    <a href="/" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>
