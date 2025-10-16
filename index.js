@@ -10,7 +10,7 @@ var session =require("express-session")
 var conn =mysql.createConnection({
     host:"bldxcgadhpzbdaaczqip-mysql.services.clever-cloud.com",
     user:"uivbnqccetoihrcb",
-    password:"uivbnqccetoihrcb",
+    password:"H9gVO5bwt4qYQcIldb0g",
     database:"bldxcgadhpzbdaaczqip"
 })
 
